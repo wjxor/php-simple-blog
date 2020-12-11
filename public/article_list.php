@@ -28,8 +28,12 @@ while ( $row = mysqli_fetch_assoc($rs) ) {
         제목 : <a class="hover-underline" href="article_detail.php?id=<?=$row['id']?>"><?=$row['title']?></a>
     </div>
     <div>
+        <?php if ( App__actorCanDelete($row) ) { ?>
         <a href="javascript:;" onclick="if ( confirm('삭제하시겠습니까?') ) { location.replace('/do_delete_article.php?id=<?=$row['id']?>'); };" class="underline">삭제</a>
+        <?php } ?>
+        <?php if ( App__actorCanModify($row) ) { ?>
         <a href="/modify_article.php?id=<?=$row['id']?>" class="underline">수정</a>
+        <?php } ?>
     </div>
     <hr />
   </div>
